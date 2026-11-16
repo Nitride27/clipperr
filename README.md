@@ -4,6 +4,24 @@ Chat-spike auto-clipper for streams (built for GTA 6 / Content Rewards). No AI p
 chat velocity plus hype words (KEKW, 💀, "clip it"...) and cuts from just before chat starts going off.
 The only ML is offline faster-whisper on your GPU, used for the captions.
 
+## Setup (Windows, once)
+Needs Python 3.12, an NVIDIA GPU (NVENC encoding + CUDA whisper), and on PATH:
+[ffmpeg](https://www.gyan.dev/ffmpeg/builds/) and [Node.js](https://nodejs.org) (yt-dlp uses it for YouTube).
+
+    py -3.12 -m venv .venv
+    .venv\Scripts\pip install -r requirements.txt
+
+- **Twitch VODs**: download `TwitchDownloaderCLI` for Windows from
+  [lay295/TwitchDownloader releases](https://github.com/lay295/TwitchDownloader/releases) and unzip it into `tools/`.
+- **Fonts** (optional): Arial Black, Impact and Segoe UI Black are Windows fonts, so they're not in the repo. Copy them
+  in so captions render exactly as in the editor:
+
+      copy C:\Windows\Fonts\ariblk.ttf assets\fonts\ & copy C:\Windows\Fonts\impact.ttf assets\fonts\ & copy C:\Windows\Fonts\seguibl.ttf assets\fonts\
+
+- **Split layout**: drop background gameplay loops (.mp4) into `assets/bg/` (see Layouts below).
+
+The first clip downloads the whisper model (~1.6 GB), so it takes a few minutes longer.
+
 ## Run
     run.bat                     -> opens http://127.0.0.1:8765
 
