@@ -1,0 +1,12 @@
+yt-dlp
+streamlink
+chat-downloader
+faster-whisper
+av<16
+nvidia-cublas-cu12
+nvidia-cudnn-cu12==9.*
+fastapi
+uvicorn
+websockets
+curl_cffi
+pytest

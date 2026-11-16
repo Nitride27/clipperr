@@ -1,0 +1,53 @@
+# clipperr settings. Edit, then restart run.bat.
+
+[spike]
+k_mad = 4.0          # score must beat median + k*MAD of the last baseline_s
+min_ratio = 2.5      # ...and be this many times the median
+min_rate = 1.0       # weighted msgs/s floor for the median (stops dead chats firing on 3 messages)
+baseline_s = 120
+smooth_s = 3
+pre_roll = 20        # seconds before the chat reaction starts (reaction lag + setup)
+post_roll = 6        # seconds after the chat peak
+min_len = 15
+max_len = 60
+merge_gap = 10
+top_n = 15           # VOD mode: render the best N spikes
+
+[weights]
+# key (case-insensitive) -> extra weight per message. Keys match at the start of a word ("clip" hits "clipped",
+# not "eclipse"); keys of 1-2 letters must be the whole word ("w" hits "W", not "now"). Stretched words are
+# squashed first ("LMAOOOO" -> "lmao", "noooo way" -> "no way") and get +0.5 for the stretch.
+"kekw" = 1.5
+"omegalul" = 1.5
+"lul" = 1.0
+"lmao" = 1.0
+"lmfao" = 1.0
+"???" = 1.0
+"clip" = 3.0
+"holy" = 1.0
+"no way" = 1.5
+"wtf" = 1.0
+"💀" = 1.5
+"😭" = 1.0
+"😂" = 1.0
+"pog" = 1.0
+"w" = 0.5
+"haha" = 1.0
+"ahah" = 1.0
+"omg" = 1.0
+"insane" = 1.0
+
+[live]
+sync_offset = 0      # +N shifts clips N seconds later in the recording, -N earlier
+keep_s = 300         # live recording keeps only this many recent seconds (plus anything a queued clip needs)
+pad = 10             # extra seconds kept around each clip so in/out nudges don't need a refetch
+
+[render]
+layout = "split"     # "split" (game top + bg loop bottom) or "full" (game over blurred self)
+game_zoom = 0.6      # full layout: fraction of source width kept (center crop)
+whisper_model = "large-v3-turbo"
+font = "Arial Black"
+font_size = 92
+words_per_line = 3
+# Clip caption. Fields: {name} streamer, {tag} name as a hashtag, {title} stream title, {chat} chat's top reaction
+caption = "{name} in GTA 6 💀 #gta6 #gta6clips #{tag} #gaming #fyp"
